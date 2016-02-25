@@ -6,6 +6,9 @@ export GOPATH=$(realpath .)
 export PATH := $(GOROOT)/bin:$(GOPATH)/bin:$(PATH)
 
 
+test:
+	go test -v locale.go locale_test.go
+
 run: js
 	go run example/server.go
 
