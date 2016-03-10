@@ -42,6 +42,9 @@ func PO2JSON(domain, localedir, jsonPath string) {
 	// create PO-like json data for i18n
 	obj := localesMsg{}
 	for _, dir := range dirs {
+		if !dir.IsDir() {
+			continue
+		}
 		locale := dir.Name()
 		// English is default language
 		if locale == "en_US" {
