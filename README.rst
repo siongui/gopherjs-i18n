@@ -2,22 +2,55 @@
 GopherJS_ i18n_
 ===============
 
+.. image:: https://travis-ci.org/siongui/gopherjs-i18n.svg?branch=master
+    :target: https://travis-ci.org/siongui/gopherjs-i18n
+
+
 `gettext function`_ in your browser.
 
 This package includes offline code to convert PO_ to JSON_,
 and runtime code to translate strings.
 
-Development Environment: `Ubuntu 15.10`_ and `Go 1.5.3`_.
+Development Environment:
+
+  - `Ubuntu 20.04`_
+  - `Go 1.12.17`_
+  - GopherJS_
 
 
-Usage
-+++++
+Install
++++++++
 
 Install package:
 
 .. code-block:: bash
 
   go get -u github.com/siongui/gopherjs-i18n
+
+
+Online Translating Website
+++++++++++++++++++++++++++
+
+See demo_ first. Demo code is in `example directory <example/>`_.
+
+Wrap the string you want to translate in element with *data-default-string*
+attribute containing the un-translated string. For example,
+
+.. code-block:: html
+
+  <div data-default-string="Home">Home</div>
+
+or
+
+.. code-block:: html
+
+  <span data-default-string="Home">Home</span>
+
+Both are valid for later translation.
+
+
+Offline Preparing Translation Data
+++++++++++++++++++++++++++++++++++
 
 offline: example for converting PO_ to JSON_:
 
@@ -38,8 +71,6 @@ offline: example for converting PO_ to JSON_:
   - *localedir*: the directory where you put PO_ files
 
   - *jsonPath*: output path of JSON_ file
-
-runtime: See `example directory <example/>`_ for demo code.
 
 
 UNLICENSE
@@ -63,13 +94,13 @@ References
 
        `path - The Go Programming Language <https://golang.org/pkg/path/>`_
 
-.. _Go: https://golang.org/
-.. _Golang: https://golang.org/
+
 .. _GopherJS: https://github.com/gopherjs/gopherjs
 .. _i18n: https://www.google.com/search?q=i18n
 .. _gettext function: http://linux.die.net/man/3/gettext
-.. _Ubuntu 15.10: http://releases.ubuntu.com/15.10/
-.. _Go 1.5.3: https://golang.org/dl/
-.. _UNLICENSE: http://unlicense.org/
 .. _PO: https://www.gnu.org/software/gettext/manual/html_node/PO-Files.html
 .. _JSON: http://www.json.org/
+.. _Ubuntu 20.04: https://releases.ubuntu.com/20.04/
+.. _Go 1.12.17: https://golang.org/dl/
+.. _demo: https://siongui.github.io/gopherjs-i18n/
+.. _UNLICENSE: https://unlicense.org/

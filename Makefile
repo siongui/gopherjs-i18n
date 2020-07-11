@@ -1,10 +1,13 @@
 # cannot use relative path in GOROOT, otherwise 6g not found. For example,
 #   export GOROOT=../go  (=> 6g not found)
 # it is also not allowed to use relative path in GOPATH
-export GOROOT=$(realpath ../go)
-export GOPATH=$(realpath .)
-export PATH := $(GOROOT)/bin:$(GOPATH)/bin:$(PATH)
+ifndef TRAVIS
+	export GOROOT=$(realpath ../paligo/go)
+	export GOPATH=$(realpath ../paligo)
+	export PATH := $(GOROOT)/bin:$(GOPATH)/bin:$(PATH)
+endif
 
+PKG="github.com/siongui/gopherjs-i18n"
 
 test:
 	go test -v locale.go locale_test.go
@@ -14,6 +17,10 @@ run: js
 
 js:
 	cd example; gopherjs build demo.go -o demo.js
+
+local:
+	@[ -d ${GOPATH}/src/${PKG}/ ] || mkdir -p ${GOPATH}/src/${PKG}/
+	@cp *.go ${GOPATH}/src/${PKG}/
 
 fmt:
 	@go fmt *.go
@@ -26,3 +33,4 @@ install:
 clean:
 	rm example/demo.js
 	rm example/demo.js.map
+	rm -rf ${GOPATH}/src/${PKG}/
