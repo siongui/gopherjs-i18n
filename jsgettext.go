@@ -16,16 +16,13 @@ func SetupTranslationMapping(jsonBlob string) {
 	}
 }
 
-func gettext(locale, str string) string {
+func Gettext(locale, str string) string {
 	if val, ok := msg[locale]; ok {
 		if val2, ok2 := val[str]; ok2 {
 			return val2
-		} else {
-			return str
 		}
-	} else {
-		return str
 	}
+	return str
 }
 
 func Translate(locale string) {
@@ -34,6 +31,6 @@ func Translate(locale string) {
 	for i := 0; i < length; i++ {
 		element := nodeList.Call("item", i)
 		str := element.Get("dataset").Get("defaultString").String()
-		element.Set("textContent", gettext(locale, str))
+		element.Set("textContent", Gettext(locale, str))
 	}
 }
