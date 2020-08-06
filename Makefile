@@ -8,6 +8,7 @@ ifndef TRAVIS
 endif
 
 PKG="github.com/siongui/gopherjs-i18n"
+PKGDIR=${GOPATH}/src/${PKG}/
 
 test:
 	go test -v locale.go locale_test.go
@@ -19,8 +20,8 @@ js:
 	cd example; gopherjs build demo.go -o demo.js
 
 local:
-	@[ -d ${GOPATH}/src/${PKG}/ ] || mkdir -p ${GOPATH}/src/${PKG}/
-	@cp *.go ${GOPATH}/src/${PKG}/
+	@[ -d $(PKGDIR) ] || mkdir -p $(PKGDIR)
+	@cp *.go $(PKGDIR)
 
 fmt:
 	@go fmt *.go

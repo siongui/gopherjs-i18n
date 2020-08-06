@@ -9,14 +9,17 @@ import (
 	"github.com/gopherjs/gopherjs/js"
 )
 
-type msgIdStrPairs map[string]string
-type localesMsg map[string]msgIdStrPairs
+// LocalesMsg is the data structrue to store translations of PO file.
+type LocalesMsg map[string]MsgIdStrPairs
 
-var msg = localesMsg{}
+// MsgIdStrPairs is the data structrue to store translations of PO file.
+type MsgIdStrPairs map[string]string
+
+var msg = LocalesMsg{}
 var document = js.Global.Get("document")
 
 func SetupTranslationMapping(jsonBlob string) (err error) {
-	err := json.Unmarshal([]byte(jsonBlob), &msg)
+	err = json.Unmarshal([]byte(jsonBlob), &msg)
 	return
 }
 

@@ -16,7 +16,7 @@ func main() {
 	for i := 0; i < length; i++ {
 		btn := nodeList.Call("item", i)
 		btn.Call("addEventListener", "click", func() {
-			jsgettext.Translate(btn.Get("value").String())
+			jsgettext.TranslateDocument(btn.Get("value").String())
 		})
 	}
 }
