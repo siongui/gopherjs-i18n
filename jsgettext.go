@@ -1,5 +1,5 @@
 // Package jsgettext provides frontend methods to translate html document in the
-// browser on the fly, similar to GNU gettext function. This package is written
+// browser on demand, similar to GNU gettext function. This package is written
 // in Go and compiled to JavaScript via GopherJS.
 package jsgettext
 

@@ -1,3 +1,5 @@
+// Package po2json converts PO files to JSON file. The JSON file is used in
+// frontend code to translate the HTML document on demand.
 package po2json
 
 import (
@@ -36,6 +38,8 @@ func extractFromPOFile(popath string) (pairs MsgIdStrPairs, err error) {
 	return
 }
 
+// PO2JSON converts PO files to JSON file. The JSON file is used in frontend
+// code to translate the HTML document on demand.
 func PO2JSON(domain, localedir, jsonPath string) (err error) {
 	dirs, err := ioutil.ReadDir(localedir)
 	if err != nil {

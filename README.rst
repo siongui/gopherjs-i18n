@@ -11,7 +11,7 @@ GopherJS_ i18n_
 .. image:: https://travis-ci.org/siongui/gopherjs-i18n.svg?branch=master
     :target: https://travis-ci.org/siongui/gopherjs-i18n
 
-.. image:: https://gitlab.com/siongui/gopherjs-i18n/badges/master/pipeline.svg
+.. .. image:: https://gitlab.com/siongui/gopherjs-i18n/badges/master/pipeline.svg
     :target: https://gitlab.com/siongui/gopherjs-i18n/-/commits/master
 
 .. image:: https://goreportcard.com/badge/github.com/siongui/gopherjs-i18n
