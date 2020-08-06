@@ -7,8 +7,11 @@ import (
 	"regexp"
 )
 
-type msgIdStrPairs map[string]string
-type localesMsg map[string]msgIdStrPairs
+// LocalesMsg is the data structrue to store translations of PO file.
+type LocalesMsg map[string]MsgIdStrPairs
+
+// MsgIdStrPairs is the data structrue to store translations of PO file.
+type MsgIdStrPairs map[string]string
 
 const pattern = `msgid "(.+)"\nmsgstr "(.+)"`
 
@@ -17,30 +20,30 @@ func getPOPath(locale, domain, localedir string) string {
 	return path.Join(localedir, locale, "LC_MESSAGES", filename)
 }
 
-func extractFromPOFile(popath string) msgIdStrPairs {
+func extractFromPOFile(popath string) (pairs MsgIdStrPairs, err error) {
 	buf, err := ioutil.ReadFile(popath)
 	if err != nil {
-		panic(err)
+		return
 	}
 
 	re := regexp.MustCompile(pattern)
 	matches := re.FindAllStringSubmatch(string(buf), -1)
 
-	pairs := msgIdStrPairs{}
+	pairs = MsgIdStrPairs{}
 	for _, array := range matches {
 		pairs[array[1]] = array[2]
 	}
-	return pairs
+	return
 }
 
-func PO2JSON(domain, localedir, jsonPath string) {
+func PO2JSON(domain, localedir, jsonPath string) (err error) {
 	dirs, err := ioutil.ReadDir(localedir)
 	if err != nil {
-		panic(err)
+		return
 	}
 
 	// create PO-like json data for i18n
-	obj := localesMsg{}
+	obj := LocalesMsg{}
 	for _, dir := range dirs {
 		if !dir.IsDir() {
 			continue
@@ -51,16 +54,17 @@ func PO2JSON(domain, localedir, jsonPath string) {
 			continue
 		}
 
-		obj[locale] = extractFromPOFile(getPOPath(locale, domain, localedir))
+		obj[locale], err = extractFromPOFile(getPOPath(locale, domain, localedir))
+		if err != nil {
+			return
+		}
 	}
 
 	b, err := json.Marshal(obj)
 	if err != nil {
-		panic(err)
+		return
 	}
 
 	err = ioutil.WriteFile(jsonPath, b, 0644)
-	if err != nil {
-		panic(err)
-	}
+	return
 }
