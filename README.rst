@@ -2,8 +2,23 @@
 GopherJS_ i18n_
 ===============
 
+.. image:: https://img.shields.io/badge/Language-Go-blue.svg
+   :target: https://golang.org/
+
+.. image:: https://godoc.org/github.com/siongui/gopherjs-i18n?status.svg
+   :target: https://godoc.org/github.com/siongui/gopherjs-i18n
+
 .. image:: https://travis-ci.org/siongui/gopherjs-i18n.svg?branch=master
     :target: https://travis-ci.org/siongui/gopherjs-i18n
+
+.. image:: https://gitlab.com/siongui/gopherjs-i18n/badges/master/pipeline.svg
+    :target: https://gitlab.com/siongui/gopherjs-i18n/-/commits/master
+
+.. image:: https://goreportcard.com/badge/github.com/siongui/gopherjs-i18n
+   :target: https://goreportcard.com/report/github.com/siongui/gopherjs-i18n
+
+.. image:: https://img.shields.io/badge/license-Unlicense-blue.svg
+   :target: https://github.com/siongui/gopherjs-i18n/blob/master/UNLICENSE
 
 
 `gettext function`_ in your browser.
