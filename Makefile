@@ -25,6 +25,7 @@ local:
 fmt:
 	@go fmt *.go
 	@go fmt example/*.go
+	@go fmt tool/*.go
 
 install:
 	go get -u github.com/gopherjs/gopherjs
